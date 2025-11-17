@@ -60,6 +60,7 @@ CREATE TABLE IF NOT EXISTS Posts (
     title VARCHAR(150) NOT NULL,
     content TEXT,
     image_link VARCHAR(255),
+    extra JSON,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
@@ -71,7 +72,19 @@ CREATE TABLE IF NOT EXISTS Comments (
     user_id INT NOT NULL,
     comment_text TEXT NOT NULL,
     rating DECIMAL(2,1),
+    image_link VARCHAR(255),
+    extra JSON,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (post_id) REFERENCES Posts(post_id),
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
+
+-- LIKES: generic table to allow liking posts or comments
+CREATE TABLE IF NOT EXISTS Likes (
+    like_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    target_type ENUM('post','comment') NOT NULL,
+    target_id INT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
