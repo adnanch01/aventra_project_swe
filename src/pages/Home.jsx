@@ -16,7 +16,7 @@ export default function Home() {
       <div
         className="relative h-[80vh] flex flex-col justify-center items-center text-center text-white overflow-hidden"
         style={{
-          backgroundImage: "url('/images/hero-bg.jpg')", // replace with your scenic hero image
+          backgroundImage: "url('/images/swiss.avif')", // scenic hero image
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
