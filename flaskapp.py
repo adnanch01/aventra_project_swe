@@ -10,7 +10,7 @@ from datetime import datetime, timedelta
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/api/*": {"origins": "*"}})  # Allow all origins for testing
 
 # FlightAware API Configuration
 FLIGHTAWARE_API_KEY = os.getenv('FLIGHTAWARE_API_KEY', 'CREqJuRSsur7DaGCOZvXlK64fKc7O82w')
@@ -394,4 +394,4 @@ def get_flight_details(flight_id):
     })
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5001)
